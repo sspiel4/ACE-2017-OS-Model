@@ -7494,7 +7494,7 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {9e72f1a0-ac34-4e87-b2a8-31b9d923f4a7}, !- Group Rendering Name
   {373d3b00-c6fb-4247-9847-495791982794}, !- Thermostat Name
-  Yes;                                    !- Use Ideal Air Loads
+  No;                                     !- Use Ideal Air Loads
 
 OS:Node,
   {53871ce5-6a17-4838-8481-8ade3b53264c}, !- Handle
@@ -7518,7 +7518,8 @@ OS:PortList,
 OS:PortList,
   {fe98ad8b-62dc-4701-8599-ea3442c5c036}, !- Handle
   Port List 10,                           !- Name
-  {f30e2650-1e6c-4f6a-ac51-4e5dd1e62ca7}; !- HVAC Component
+  {f30e2650-1e6c-4f6a-ac51-4e5dd1e62ca7}, !- HVAC Component
+  {e3c15104-881d-4483-849a-47f4c074d6ea}; !- Port 1
 
 OS:Sizing:Zone,
   {67f701bf-4b8a-4159-a3a7-3377bd5c2930}, !- Handle
@@ -7553,7 +7554,10 @@ OS:Sizing:Zone,
 OS:ZoneHVAC:EquipmentList,
   {d3186cd4-7030-42bd-8391-5e880623ea6c}, !- Handle
   Zone HVAC Equipment List 5,             !- Name
-  {f30e2650-1e6c-4f6a-ac51-4e5dd1e62ca7}; !- Thermal Zone
+  {f30e2650-1e6c-4f6a-ac51-4e5dd1e62ca7}, !- Thermal Zone
+  {7a3ac174-6eb3-4891-a02d-db5001b68dff}, !- Zone Equipment 1
+  1,                                      !- Zone Equipment Cooling Sequence 1
+  1;                                      !- Zone Equipment Heating or No-Load Sequence 1
 
 OS:ThermalZone,
   {14f2e9fc-50ad-45bd-b891-b495588f5880}, !- Handle
@@ -7663,7 +7667,7 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {4c2a1e6b-3e34-42ae-a50e-b856a3885898}, !- Group Rendering Name
   {771033ca-4d9e-408d-93d5-cfaca1904725}, !- Thermostat Name
-  Yes;                                    !- Use Ideal Air Loads
+  No;                                     !- Use Ideal Air Loads
 
 OS:Node,
   {eabd2546-0976-4489-a18b-de41907aa83e}, !- Handle
@@ -7687,7 +7691,8 @@ OS:PortList,
 OS:PortList,
   {1c28f4e6-4aa2-40ff-98a2-e772277a76c4}, !- Handle
   Port List 14,                           !- Name
-  {1796d843-7977-4346-84df-3a0a405cc42b}; !- HVAC Component
+  {1796d843-7977-4346-84df-3a0a405cc42b}, !- HVAC Component
+  {10a3f01e-0ee4-4846-8e54-2ead12740d6c}; !- Port 1
 
 OS:Sizing:Zone,
   {62e6a1f4-5b27-4e38-8016-d41828d27611}, !- Handle
@@ -7722,7 +7727,10 @@ OS:Sizing:Zone,
 OS:ZoneHVAC:EquipmentList,
   {94e5a424-2372-4072-b847-fcdc66c2cf62}, !- Handle
   Zone HVAC Equipment List 7,             !- Name
-  {1796d843-7977-4346-84df-3a0a405cc42b}; !- Thermal Zone
+  {1796d843-7977-4346-84df-3a0a405cc42b}, !- Thermal Zone
+  {d13b35dd-908d-46b2-b91a-52341b2aeb06}, !- Zone Equipment 1
+  1,                                      !- Zone Equipment Cooling Sequence 1
+  1;                                      !- Zone Equipment Heating or No-Load Sequence 1
 
 OS:ThermalZone,
   {5b04c849-7523-4222-a1b0-35ba2d678bfb}, !- Handle
@@ -13687,5 +13695,107 @@ OS:Connection,
   {eec2db9d-e6a7-4a81-98cc-1c889692f787}, !- Source Object
   12,                                     !- Outlet Port
   {4346b463-8540-493b-ab1f-d76a931c1e01}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Fan:ZoneExhaust,
+  {7a3ac174-6eb3-4891-a02d-db5001b68dff}, !- Handle
+  Zone Exhaust Fan - Jan 1,               !- Name
+  {9f192001-52bd-4686-8e6d-d40eb580009b}, !- Availability Schedule Name
+  0.6,                                    !- Fan Efficiency
+  0,                                      !- Pressure Rise {Pa}
+  0.02359737216,                          !- Maximum Flow Rate {m3/s}
+  {ee5d1789-5e97-40d4-9864-41febc386a35}, !- Air Inlet Node Name
+  {f94b7f39-963b-4808-8965-e5b1d1f2f083}, !- Air Outlet Node Name
+  General,                                !- End-Use Subcategory
+  ,                                       !- Flow Fraction Schedule Name
+  Decoupled,                              !- System Availability Manager Coupling Mode
+  ,                                       !- Minimum Zone Temperature Limit Schedule Name
+  ;                                       !- Balanced Exhaust Fraction Schedule Name
+
+OS:Node,
+  {2da23b65-883d-4b9e-9e23-18c8aba19546}, !- Handle
+  Node 80,                                !- Name
+  {e3c15104-881d-4483-849a-47f4c074d6ea}, !- Inlet Port
+  {ee5d1789-5e97-40d4-9864-41febc386a35}; !- Outlet Port
+
+OS:Connection,
+  {e3c15104-881d-4483-849a-47f4c074d6ea}, !- Handle
+  {ecab0e81-f2a5-402b-83d8-ef1f1e5da66d}, !- Name
+  {fe98ad8b-62dc-4701-8599-ea3442c5c036}, !- Source Object
+  3,                                      !- Outlet Port
+  {2da23b65-883d-4b9e-9e23-18c8aba19546}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {ee5d1789-5e97-40d4-9864-41febc386a35}, !- Handle
+  {c758829b-a45f-4d5b-a86f-4d784d92f244}, !- Name
+  {2da23b65-883d-4b9e-9e23-18c8aba19546}, !- Source Object
+  3,                                      !- Outlet Port
+  {7a3ac174-6eb3-4891-a02d-db5001b68dff}, !- Target Object
+  6;                                      !- Inlet Port
+
+OS:Node,
+  {400216e9-2117-4155-9316-218c765f31f5}, !- Handle
+  Node 82,                                !- Name
+  {f94b7f39-963b-4808-8965-e5b1d1f2f083}, !- Inlet Port
+  ;                                       !- Outlet Port
+
+OS:Connection,
+  {f94b7f39-963b-4808-8965-e5b1d1f2f083}, !- Handle
+  {51e7f40a-bfcd-44e7-ad77-53099a1e0dca}, !- Name
+  {7a3ac174-6eb3-4891-a02d-db5001b68dff}, !- Source Object
+  7,                                      !- Outlet Port
+  {400216e9-2117-4155-9316-218c765f31f5}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Fan:ZoneExhaust,
+  {d13b35dd-908d-46b2-b91a-52341b2aeb06}, !- Handle
+  Zone Exhaust Fan - Jan 2,               !- Name
+  {9f192001-52bd-4686-8e6d-d40eb580009b}, !- Availability Schedule Name
+  0.6,                                    !- Fan Efficiency
+  0,                                      !- Pressure Rise {Pa}
+  0.02359737216,                          !- Maximum Flow Rate {m3/s}
+  {2142c59a-2f0f-4307-bd10-28f9488095a1}, !- Air Inlet Node Name
+  {d8db7344-6ef8-4504-aa85-7ee0b21c2e17}, !- Air Outlet Node Name
+  General,                                !- End-Use Subcategory
+  ,                                       !- Flow Fraction Schedule Name
+  Decoupled,                              !- System Availability Manager Coupling Mode
+  ,                                       !- Minimum Zone Temperature Limit Schedule Name
+  ;                                       !- Balanced Exhaust Fraction Schedule Name
+
+OS:Node,
+  {33aebb4c-521d-46d0-88fa-12591da02945}, !- Handle
+  Node 83,                                !- Name
+  {10a3f01e-0ee4-4846-8e54-2ead12740d6c}, !- Inlet Port
+  {2142c59a-2f0f-4307-bd10-28f9488095a1}; !- Outlet Port
+
+OS:Connection,
+  {10a3f01e-0ee4-4846-8e54-2ead12740d6c}, !- Handle
+  {59e64849-27b1-4480-ba73-481787a98e45}, !- Name
+  {1c28f4e6-4aa2-40ff-98a2-e772277a76c4}, !- Source Object
+  3,                                      !- Outlet Port
+  {33aebb4c-521d-46d0-88fa-12591da02945}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {2142c59a-2f0f-4307-bd10-28f9488095a1}, !- Handle
+  {97967721-d381-45f9-b9e2-e3d3b1cd8dd9}, !- Name
+  {33aebb4c-521d-46d0-88fa-12591da02945}, !- Source Object
+  3,                                      !- Outlet Port
+  {d13b35dd-908d-46b2-b91a-52341b2aeb06}, !- Target Object
+  6;                                      !- Inlet Port
+
+OS:Node,
+  {4b0a862b-4763-4ac7-b357-cbe81307899c}, !- Handle
+  Node 84,                                !- Name
+  {d8db7344-6ef8-4504-aa85-7ee0b21c2e17}, !- Inlet Port
+  ;                                       !- Outlet Port
+
+OS:Connection,
+  {d8db7344-6ef8-4504-aa85-7ee0b21c2e17}, !- Handle
+  {fed96cf8-1952-4986-86cc-a0d13bfbb739}, !- Name
+  {d13b35dd-908d-46b2-b91a-52341b2aeb06}, !- Source Object
+  7,                                      !- Outlet Port
+  {4b0a862b-4763-4ac7-b357-cbe81307899c}, !- Target Object
   2;                                      !- Inlet Port
 

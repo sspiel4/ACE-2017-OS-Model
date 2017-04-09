@@ -13048,7 +13048,7 @@ OS:Coil:Heating:Gas,
   Coil Heating Gas 1,                     !- Name
   {7d768ecc-525b-404e-a6a3-9ebc34eb98d8}, !- Availability Schedule Name
   0.8,                                    !- Gas Burner Efficiency
-  AutoSize,                               !- Nominal Capacity {W}
+  Autosize,                               !- Nominal Capacity {W}
   {0bde78b5-48bd-4eeb-b5ac-714a2759a0d7}, !- Air Inlet Node Name
   {353c6c5b-3ab6-40cd-afb1-9823bd87e32e}, !- Air Outlet Node Name
   ,                                       !- Temperature Setpoint Node Name
@@ -13955,13 +13955,6 @@ OS:Connection,
   {7e5d9c6a-82ec-44d6-84c7-19443bd7dd4a}, !- Target Object
   2;                                      !- Inlet Port
 
-OS:SetpointManager:Scheduled,
-  {95c05b5e-8b54-48fd-841b-509060101168}, ! Handle
-  Scheduled Deck Temp,                    ! Name
-  Temperature,                            ! Control Variable
-  {859734fc-88f7-4741-8ce2-5e2d7d6f9a71}, ! Schedule Name
-  {be7f2337-26ff-4559-92a8-a8bae1c47ce4}; ! Setpoint Node or NodeList Name
-
 OS:Schedule:Ruleset,
   {859734fc-88f7-4741-8ce2-5e2d7d6f9a71}, ! Handle
   Deck Temperature,                       ! Name
@@ -14004,4 +13997,13 @@ OS:ScheduleTypeLimits,
   ,                                       !- Upper Limit Value
   Continuous,                             !- Numeric Type
   Temperature;                            !- Unit Type
+
+OS:SetpointManager:Warmest,
+  {2295d54d-5b54-4a64-b87d-39ea7cd6a1cf}, !- Handle
+  Warmest Zone Supply Air Temp Reset,     !- Name
+  Temperature,                            !- Control Variable
+  12.7777777777778,                       !- Minimum Setpoint Temperature {C}
+  18.3333333333334,                       !- Maximum Setpoint Temperature {C}
+  MaximumTemperature,                     !- Strategy
+  {be7f2337-26ff-4559-92a8-a8bae1c47ce4}; !- Setpoint Node or NodeList Name
 

@@ -12993,12 +12993,12 @@ OS:Connection,
 OS:Sizing:System,
   {a940d386-abd5-483e-afdf-1e739848ef59}, !- Handle
   {618b5a34-8f30-40ae-b429-6ebe314e39bb}, !- AirLoop Name
-  Sensible,                               !- Type of Load to Size On
+  VentilationRequirement,                 !- Type of Load to Size On
   Autosize,                               !- Design Outdoor Air Flow Rate {m3/s}
   1,                                      !- Minimum System Air Flow Ratio
-  7,                                      !- Preheat Design Temperature {C}
+  7.22222222222229,                       !- Preheat Design Temperature {C}
   0.008,                                  !- Preheat Design Humidity Ratio {kg-H2O/kg-Air}
-  12.8,                                   !- Precool Design Temperature {C}
+  12.7777777777778,                       !- Precool Design Temperature {C}
   0.008,                                  !- Precool Design Humidity Ratio {kg-H2O/kg-Air}
   12.8,                                   !- Central Cooling Design Supply Air Temperature {C}
   40,                                     !- Central Heating Design Supply Air Temperature {C}
@@ -13143,14 +13143,6 @@ OS:Curve:Quadratic,
   0,                                      !- Coefficient3 x**2
   0,                                      !- Minimum Value of x
   1;                                      !- Maximum Value of x
-
-OS:SetpointManager:SingleZone:Reheat,
-  {cdd1b008-dec1-4c59-b771-9694dec9d84c}, !- Handle
-  Setpoint Manager Single Zone Reheat 1,  !- Name
-  -99,                                    !- Minimum Supply Air Temperature {C}
-  99,                                     !- Maximum Supply Air Temperature {C}
-  {9f86c2a4-495a-40ca-95b3-bc079a0b9d9f}, !- Control Zone Name
-  {be7f2337-26ff-4559-92a8-a8bae1c47ce4}; !- Setpoint Node or NodeList Name
 
 OS:Controller:OutdoorAir,
   {8dd5ac8d-8c00-46f4-86ae-c1e59232f4dc}, !- Handle
@@ -13962,4 +13954,54 @@ OS:Connection,
   4,                                      !- Outlet Port
   {7e5d9c6a-82ec-44d6-84c7-19443bd7dd4a}, !- Target Object
   2;                                      !- Inlet Port
+
+OS:SetpointManager:Scheduled,
+  {95c05b5e-8b54-48fd-841b-509060101168}, ! Handle
+  Scheduled Deck Temp,                    ! Name
+  Temperature,                            ! Control Variable
+  {859734fc-88f7-4741-8ce2-5e2d7d6f9a71}, ! Schedule Name
+  {be7f2337-26ff-4559-92a8-a8bae1c47ce4}; ! Setpoint Node or NodeList Name
+
+OS:Schedule:Ruleset,
+  {859734fc-88f7-4741-8ce2-5e2d7d6f9a71}, ! Handle
+  Deck Temperature,                       ! Name
+  {9e40dfe2-1d2d-4f35-9ea5-0db5704898b9}, ! Schedule Type Limits Name
+  {290e519c-fcfb-4b10-85f0-fc062b1a78b5}, ! Default Day Schedule Name
+  {60a97725-b2ae-415a-b382-9c7d40095d48}, ! Summer Design Day Schedule Name
+  {4b11153e-5662-444a-b1ea-ef9151d99eb8}; ! Winter Design Day Schedule Name
+
+OS:Schedule:Day,
+  {290e519c-fcfb-4b10-85f0-fc062b1a78b5}, ! Handle
+  Deck Temperature Default,               ! Name
+  {9e40dfe2-1d2d-4f35-9ea5-0db5704898b9}, ! Schedule Type Limits Name
+  ,                                       ! Interpolate to Timestep
+  24,                                     ! Hour 1
+  0,                                      ! Minute 1
+  12.8;                                   ! Value Until Time 1
+
+OS:Schedule:Day,
+  {60a97725-b2ae-415a-b382-9c7d40095d48}, ! Handle
+  Deck Temperature Summer Design Day,     ! Name
+  {9e40dfe2-1d2d-4f35-9ea5-0db5704898b9}, ! Schedule Type Limits Name
+  ,                                       ! Interpolate to Timestep
+  24,                                     ! Hour 1
+  0,                                      ! Minute 1
+  12.8;                                   ! Value Until Time 1
+
+OS:Schedule:Day,
+  {4b11153e-5662-444a-b1ea-ef9151d99eb8}, ! Handle
+  Deck Temperature Winter Design Day,     ! Name
+  {9e40dfe2-1d2d-4f35-9ea5-0db5704898b9}, ! Schedule Type Limits Name
+  ,                                       ! Interpolate to Timestep
+  24,                                     ! Hour 1
+  0,                                      ! Minute 1
+  12.8;                                   ! Value Until Time 1
+
+OS:ScheduleTypeLimits,
+  {9e40dfe2-1d2d-4f35-9ea5-0db5704898b9}, !- Handle
+  Temperature,                            !- Name
+  ,                                       !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  Temperature;                            !- Unit Type
 

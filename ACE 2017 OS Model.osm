@@ -4723,7 +4723,7 @@ OS:DefaultSubSurfaceConstructions,
   {fd46f4bf-89bb-4330-9b1f-38e949ac5f50}, !- Door Construction Name
   ,                                       !- Glass Door Construction Name
   ,                                       !- Overhead Door Construction Name
-  ,                                       !- Skylight Construction Name
+  {603fcb84-07a3-4767-b3fb-d1f7630b6988}, !- Skylight Construction Name
   ,                                       !- Tubular Daylight Dome Construction Name
   ;                                       !- Tubular Daylight Diffuser Construction Name
 
@@ -10580,4 +10580,37 @@ OS:SubSurface,
   -0.0702484927699541, 0.00170500697085583, 8.2296, !- X,Y,Z Vertex 2 {m}
   -8.8787833631841, 6.0869569037043, 8.2296, !- X,Y,Z Vertex 3 {m}
   -9.99866744780944, 4.49941995531297, 8.2296; !- X,Y,Z Vertex 4 {m}
+
+OS:Construction,
+  {603fcb84-07a3-4767-b3fb-d1f7630b6988}, ! Handle
+  Title 24-2008 Nonres 4 Skylight Glass Skylight with Curb, ! Name
+  ,                                       ! Surface Rendering Name
+  {5c987356-11c9-46a3-831a-eb93ec9952b3}; ! Layer 1
+
+OS:WindowMaterial:Glazing,
+  {5c987356-11c9-46a3-831a-eb93ec9952b3}, ! Handle
+  Theoretical Glass [679],                ! Name
+  SpectralAverage,                        ! Optical Data Type
+  ,                                       ! Window Glass Spectral Data Set Name
+  0.003,                                  ! Thickness {m}
+  0.387604,                               ! Solar Transmittance at Normal Incidence
+  0.562396,                               ! Front Side Solar Reflectance at Normal Incidence
+  0.562396,                               ! Back Side Solar Reflectance at Normal Incidence
+  0.400004,                               ! Visible Transmittance at Normal Incidence
+  0.549996,                               ! Front Side Visible Reflectance at Normal Incidence
+  0.549996,                               ! Back Side Visible Reflectance at Normal Incidence
+  0,                                      ! Infrared Transmittance at Normal Incidence
+  0.91,                                   ! Front Side Infrared Hemispherical Emissivity
+  0.91,                                   ! Back Side Infrared Hemispherical Emissivity
+  0.387053;                               ! Conductivity {W/m-K}
+
+OS:ComponentData,
+  {2d5b0f1c-a604-4621-9551-2c3d8b309198}, ! Handle
+  Component Data 2,                       ! Name
+  {21c31ab0-141f-4045-bbd3-f78f09f15f8c}, ! UUID
+  {8492dec4-5c67-4bb4-a188-c54d3c6c5ffa}, ! Version UUID
+  1363982015,                             ! Creation Timestamp
+  1363982015,                             ! Version Timestamp
+  {603fcb84-07a3-4767-b3fb-d1f7630b6988}, ! Name of Object 1
+  {5c987356-11c9-46a3-831a-eb93ec9952b3}; ! Name of Object 2
 
